@@ -1,0 +1,21 @@
+version: '3'
+services:
+  node:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+    environment:
+      POSTGRES_HOST: postgres
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: apidb
+    ports:
+      - "5432:5432"
